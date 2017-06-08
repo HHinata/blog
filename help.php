@@ -38,7 +38,7 @@ class help
         echo "window.location.href='$url'";
         echo "</script>";
     }
-    static function Test_cookie()
+    static function Test_cookie() //检验cookie信息是否过期
     {
         if(!isset($_COOKIE["uid"]))
         {
