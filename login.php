@@ -1,15 +1,9 @@
 <?php
-//echo "login ok";
+//echo "login ok";s
+include_once 'help.php';
 if(empty($_POST["uid"])||empty($_POST["pass"]))
 {
-    echo "<script language='javascript'>";
-    echo "alert('用户名和密码不能为空')";
-    echo "</script>";
-    $url = "http://localhost:80/index.php";
-    echo "<script language='javascript' 
-    type='text/javascript'>";
-    echo "window.location.href='$url'";
-    echo "</script>";
+    change("用户名和密码不能为空","http://localhost:80/index.php");
 }
 $uid=$_POST["uid"];
 $pass=$_POST["pass"];
@@ -34,13 +28,6 @@ if($result->num_rows>0)
 else
 {
     conn_out($conn);
-    echo "<script language='javascript'>";
-    echo "alert('用户名或密码错误')";
-    echo "</script>";
-    $url = "http://localhost:80/index.php";
-    echo "<script language='javascript' 
-    type='text/javascript'>";
-    echo "window.location.href='$url'";
-    echo "</script>";
+    change("用户名或密码错误","http://localhost:80/index.php");
 }
 ?>
