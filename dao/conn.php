@@ -12,6 +12,7 @@ function conn_in()
 	}
 	else	 
 	{
+        mysqli_query($connect,'SET NAMES UTF8');
 		return $connect;
 	}
 }

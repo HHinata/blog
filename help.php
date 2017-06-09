@@ -2,10 +2,10 @@
 class help
 {
    // public static $uid_now; //保存当前在线的用户id
-    static function Judge($x,$y)  //判断x字符串是否是合法的
+    static function Judge($x,$z)  //判断x字符串是否是合法的
     {
         if (strlen($x) > 10 || strlen($x) < 6) return 1;
-        if($y>=1)
+        if($z>=1)
         {
             for ($y = 0; $y < strlen($x); $y++)
             {
@@ -13,11 +13,11 @@ class help
                 else return 1;
             }
         }
-        if($y>=2)
+        if($z>=2)
         {
             for ($y = 0; $y < strlen($x); $y++)
             {
-                if($x[$y] >= 'a' && $x[$y] <= 'z' || $x[$y] >= 'A' && $x[$y] <= 'Z') continue;
+                if($x[$y] >= '0' && $x[$y] <= '9'||$x[$y] >= 'a' && $x[$y] <= 'z' || $x[$y] >= 'A' && $x[$y] <= 'Z') continue;
                 else return 1;
             }
         }
