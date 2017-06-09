@@ -3,9 +3,9 @@
     {
         if(confirm('确定要删除吗？'))
         {
-            alert('删除成功！');
             return true;
-        }else
+        }
+        else
         {
             return false;
         }
@@ -22,9 +22,8 @@ help::Test_cookie();
 if(!empty($_COOKIE['uid']))
 {
     $id = $_GET['id'];
-    $conn = conn_in();
     $uname = $_COOKIE['uname'];
-    $result = $conn->query("select * from blog where id='$id'");
+    $result=operation("select * from blog where id='$id'");
     $row = mysqli_fetch_assoc($result);
 }
 ?>
@@ -37,8 +36,5 @@ date: <?php echo $row['date']; ?>
 by:<?php echo $uname;?>
 <p>content:<?php echo $row['data'];?></p>
 <hr>
-<?php
-conn_out($conn);
-?>
 </body>
 </html>

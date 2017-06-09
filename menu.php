@@ -3,9 +3,9 @@
     {
         if(confirm('确定要删除吗？'))
         {
-            alert('删除成功！');
             return true;
-        }else
+        }
+        else
         {
             return false;
         }
@@ -25,16 +25,17 @@ if(!empty($_COOKIE['uid']))
 {
     $uid = $_COOKIE["uid"];
     $uname = $_COOKIE["uname"];
-    $conn = conn_in();
     $perNumber = 5; //每页显示的记录数
     $page = $_GET['page']; //获得当前的页面值
-    $count = $conn->query("select count(*) from blog where uid='$uid'"); //获得记录总数
+
+    $count = operation("select count(*) from blog where uid='$uid'");//获得记录总数
     $rs = mysqli_fetch_array($count);
     $totalNumber = $rs[0];
     $totalPage = ceil($totalNumber / $perNumber); //计算出总页数
     if (!isset($page)) $page = 1;
-    $startCount = ($page - 1) * $perNumber; //分页开始,根据此方法计算出开始的记录
-    $result = $conn->query("select * from blog where uid='$uid' order by id desc limit $startCount,$perNumber"); //根据前面的计算出开始的记录和记录数
+    $startCount = ($page - 1) * $perNumber; //分页开始,根据此方法计算出开始的记录'
+
+    $result = operation("select * from blog where uid='$uid' order by id desc limit $startCount,$perNumber"); //根据前面的计算出开始的记录和记录数
     while ($row = mysqli_fetch_assoc($result))
     {
         ?>
@@ -49,7 +50,6 @@ if(!empty($_COOKIE['uid']))
         <hr>
         <?php
     }
-    conn_out($conn);
     if ($page != 1)
     {
         ?>

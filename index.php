@@ -1,7 +1,6 @@
 <script>
 function login()
-{ 
-	//alert("loginerror");
+{
 	var form=document.form1;
 	form.action="login.php"; 
 	form.submit();

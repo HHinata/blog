@@ -9,8 +9,7 @@ help::Test_cookie();
 if(!empty($_COOKIE['uid']))
 {
     $id = $_GET['id'];
-    $conn = conn_in();
-    $result = $conn->query("select * from blog where id='$id'");
+    $result=operation("select * from blog where id='$id'");
     $row = mysqli_fetch_assoc($result);
 }
 ?>

@@ -20,4 +20,11 @@ function conn_out($connect)
 {
 	$connect->close();
 }
+function operation($sql)
+{
+    $connect = conn_in();
+    $result=$connect->query($sql);
+    conn_out($connect);
+    return $result;
+}
 ?>

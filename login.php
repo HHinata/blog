@@ -15,26 +15,23 @@ else
     $uid = $_POST["uid"];
     $pass = $_POST["pass"];
     include('dao/conn.php');
-    $conn = conn_in();
     $sql = "SELECT * FROM user WHERE uid='";
     $sql .= $uid;
     $sql .= "' AND password='";
     $sql .= $pass;
     $sql .= "';";
-    $result = $conn->query($sql);
+    $result=operation($sql);
     if ($result->num_rows > 0)
     {
         $row = $result->fetch_assoc();
         $name = $row["name"];
         echo "welcome blog ,$name";
-        conn_out($conn);
         setcookie("uid", "$uid", time() + 3600);
         setcookie("uname", "$name", time() + 3600);
         help::Jump_page("http://localhost:80/menu.php");
     }
     else
     {
-        conn_out($conn);
         help::Pop_info("用户名或密码错误");
         help::Jump_page("http://localhost:80/index.php");
     }
