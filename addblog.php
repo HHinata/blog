@@ -27,7 +27,7 @@ else
     echo mysqli_error($conn);
     conn_out($conn);
     help::Pop_info("出错请重试");
-    help::Jump_page("http://localhost:80/addblog_ui.php");
+   // help::Jump_page("http://localhost:80/addblog_ui.php");
 }
 ?>
 

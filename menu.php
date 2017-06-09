@@ -1,3 +1,16 @@
+<script>
+    function del()
+    {
+        if(confirm('确定要删除吗？'))
+        {
+            alert('删除成功！');
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+</script>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -25,7 +38,7 @@ while($row = mysqli_fetch_assoc($result))
 ?>
     <h3>title: <a href="view.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
         | <a href="edit.php?id=<?php echo $row['id']; ?>">edit</a>
-        | <a href="del.php?id=<?php echo $row['id']; ?>">delete</a>
+        | <a href="del.php?id=<?php echo $row['id']; ?>" onclick="return del();">delete</a>
     </h3>
     date: <?php echo $row['date']; ?>
     by:<?php echo $uname;?>
