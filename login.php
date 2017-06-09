@@ -28,6 +28,7 @@ else
         echo "welcome blog ,$name";
         conn_out($conn);
         setcookie("uid", "$uid", time() + 3600);
+        setcookie("uname", "$name", time() + 3600);
         help::Jump_page("http://localhost:80/addblog_ui.php");
     }
     else

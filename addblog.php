@@ -9,25 +9,25 @@ help::Test_cookie();
 $uid=$_COOKIE["uid"];
 $title=$_POST["title"];
 $content=$_POST["content"];
-$date=date();
+$time=date("Y-m-d", time());
 $id=strtotime("now");
 $id.=$uid;
-echo $id;
-//echo $id."  ".$uid;
-/*include('dao/conn.php');
+echo $id.'<br>';
+include('dao/conn.php');
 $conn=conn_in();
-$sql="INSERT INTO user (uid,password, name) VALUES ('$uid','$pass','$name')";
+$sql="INSERT INTO blog VALUES ('$id','$title','$content','$time','$uid')";
 if($conn->query($sql)==TRUE)
 {
     conn_out($conn);
-    help::Pop_info("注册成功");
-    help::Jump_page("http://localhost:80/index.php");
+    help::Pop_info("创建成功");
+    help::Jump_page("http://localhost:80/menu.php");
 }
 else
 {
+    echo mysqli_error($conn);
     conn_out($conn);
-    help::Pop_info("用户账号或用户名已经存在");
-    help::Jump_page("http://localhost:80/regist.php");
-}*/
+    help::Pop_info("出错请重试");
+    help::Jump_page("http://localhost:80/addblog_ui.php");
+}
 ?>
 
