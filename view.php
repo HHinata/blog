@@ -19,11 +19,14 @@
 include_once 'help.php';
 include_once 'dao/conn.php';
 help::Test_cookie();
-$id=$_GET['id'];
-$conn=conn_in();
-$uname=$_COOKIE['uname'];
-$result=$conn->query("select * from blog where id='$id'");
-$row=mysqli_fetch_assoc($result);
+if(!empty($_COOKIE['uid']))
+{
+    $id = $_GET['id'];
+    $conn = conn_in();
+    $uname = $_COOKIE['uname'];
+    $result = $conn->query("select * from blog where id='$id'");
+    $row = mysqli_fetch_assoc($result);
+}
 ?>
 <h2>title: <?php echo $row['title'];?></a>
     | <a href="edit.php?id=<?php echo $id; ?>">edit</a>

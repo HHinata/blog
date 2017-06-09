@@ -22,7 +22,8 @@ else
     $sql .= $pass;
     $sql .= "';";
     $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
+    if ($result->num_rows > 0)
+    {
         $row = $result->fetch_assoc();
         $name = $row["name"];
         echo "welcome blog ,$name";
