@@ -16,7 +16,8 @@
 <meta charset="utf-8">
 <body>
 <h2>Menu</h2>
-<h3></a><a href="addblog_ui.php">新建blog</a></h3>
+<h3></a><a href="addblog_ui.php">新建</a></h3>
+<h3></a><a href="index.php">退出</a></h3>
 <?php
 include_once("dao/conn.php");
 include_once 'help.php';
