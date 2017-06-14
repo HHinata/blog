@@ -16,22 +16,14 @@ else
         $time = date("Y-m-d", time());
         $id = strtotime("now");
         $id .= $uid;
-        include('dao/conn.php');
-        $conn = conn_in();
-        $sql = "INSERT INTO blog VALUES ('$id','$title','$content','$time','$uid')";
-        if ($conn->query($sql) == TRUE)
-        {
-            conn_out($conn);
-            help::Pop_info("创建成功");
-            help::Jump_page("http://localhost:80/menu.php");
-        }
-        else
-        {
-            echo mysqli_error($conn);
-            conn_out($conn);
-            help::Pop_info("出错请重试");
-            help::Jump_page("http://localhost:80/addblog_ui.php");
-        }
+        $title=htmlspecialchars($title);
+        $content=htmlspecialchars($content);
+        include_once('dao/conn.php');
+        $conn = new conn();
+        $conn->operation_insert_blog($uid,$title,$content,$id);
+        help::Pop_info("创建成功");
+        help::Jump_page("http://localhost:80/menu.php");
+
     }
 }
 ?>

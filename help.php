@@ -5,6 +5,13 @@ class help
     static function Judge($x,$z)  //判断x字符串是否是合法的
     {
         if (strlen($x) > 10 || strlen($x) < 6) return 1;
+        if($z==0)
+        {
+            for($y = 0;$y < strlen($y); $y++)
+            {
+                if($x[$y] =='>' ||$x[$y] =='<'||$x[$y] =='.'||$x[$y] =="'"|| $x[$y] =='"') return 1;
+            }
+        }
         if($z>=1)
         {
             for ($y = 0; $y < strlen($x); $y++)
@@ -45,6 +52,23 @@ class help
             help::Pop_info("身份信息过期请重新登录");
             help::Jump_page("http://localhost:80/index.php");
         }
+        else
+        {
+            include_once "dao/conn.php";
+            $conn = new conn();
+            $pass_now=$conn->operation_query_count_userpass($_COOKIE["uid"]);
+        //    echo $pass_now."    ".$_COOKIE["pass"]." ++".help::Hash($pass_now);
+            if(help::Hash($pass_now) != $_COOKIE["pass"])
+            {
+                help::Pop_info("身份信息过期请重新登录");
+                help::Jump_page("http://localhost:80/index.php");
+            }
+        }
+    }
+
+    static function Hash($str)
+    {
+        return $str;
     }
 }
 ?>

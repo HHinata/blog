@@ -14,18 +14,10 @@ else
         $title = $_POST["title"];
         $content = $_POST["content"];
         include('dao/conn.php');
-        $sql = "UPDATE blog SET title='$title',data='$content' WHERE id='$id'";
-        if (operation($sql)== TRUE)
-        {
-            help::Pop_info("修改成功");
-            help::Jump_page("http://localhost:80/view.php?id=$id");
-        }
-        else
-        {
-            echo mysqli_error($conn);
-            help::Pop_info("出错请重试");
-            help::Jump_page("http://localhost:80/edit.php?id=$id");
-        }
+        $conn = new conn();
+        $result = $conn->operation_update_blog($id,$title,$content);
+        help::Pop_info("修改成功");
+        help::Jump_page("http://localhost:80/view.php?id=$id");
     }
 }
 ?>

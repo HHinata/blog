@@ -19,6 +19,11 @@ else if(help::judge($_POST["pass"],2))
     help::Pop_info("用户密码只能为数字或字母且不小于6位不大于10位");
     help::Jump_page("http://localhost:80/regist_ui.php");
 }
+else if(help::judge($_POST["name"],0))
+{
+    help::Pop_info("用户名不能包含特殊符号");
+    help::Jump_page("http://localhost:80/regist_ui.php");
+}
 else
 {
 
@@ -26,16 +31,17 @@ else
     $pass = $_POST["pass"];
     $name = $_POST["name"];
     include('dao/conn.php');
-    $conn = conn_in();
-    $sql = "INSERT INTO user (uid,password, name) VALUES ('$uid','$pass','$name')";
-    if ($conn->query($sql) == TRUE) {
-        conn_out($conn);
-        help::Pop_info("注册成功");
-        help::Jump_page("http://localhost:80/index.php");
-    } else {
-        conn_out($conn);
+    $conn = new conn();
+    if($conn->operation_query_count_user($uid)->rowCount()>0)
+    {
         help::Pop_info("用户账号或用户名已经存在");
         help::Jump_page("http://localhost:80/regist_ui.php");
+    }
+    else
+    {
+        $conn->operation_insert_user($uid, $name, $pass);
+        help::Pop_info("注册成功");
+        help::Jump_page("http://localhost:80/index.php");
     }
 }
 ?>

@@ -10,11 +10,11 @@ if(!empty($_GET['id']))
 {
     $id = $_GET['id'];
     $uname = $_COOKIE['uname'];
-    $result=operation("delete from blog where id='$id'");
+    $conn = new conn();
+    $conn->operation_delete_blog($id);
     help::Pop_info("成功删除");
     help::Jump_page("menu.php");
 }
 ?>
 </body>
 </html>
-gi

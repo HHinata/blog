@@ -8,7 +8,7 @@ function login()
 function regist()
 {
 	var form=document.form1;
-	form.action="regist.php"; 
+	form.action="regist_ui.php";
 	form.submit();
 } 
 </script>

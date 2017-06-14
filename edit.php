@@ -9,11 +9,12 @@ help::Test_cookie();
 if(!empty($_COOKIE['uid']))
 {
     $id = $_GET['id'];
-    $result=operation("select * from blog where id='$id'");
-    $row = mysqli_fetch_assoc($result);
+    $conn = new conn();
+    $result = $conn->operation_query_blog_one($id);
+    $row = $result->fetch();
 }
 ?>
-<form action="update.php?id=<?php echo $id;?>" method="post">
+<form action="update.php?id=<?php echo $row['id'];?>" method="post">
     title  :<br>
     <input type="text" name="title" value="<?php echo $row['title'];?>">
     <br><br>
